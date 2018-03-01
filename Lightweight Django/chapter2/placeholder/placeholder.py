@@ -14,10 +14,8 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 
 
-
-
 class ImageFrom(forms.Form):
-    height = forms.IntegerField(min_value=1,max_value=2000);
+    height = forms.IntegerField(min_value=1,max_value=2000)
     width = forms.IntegerField(min_value=1, max_value=2000)
 
     
@@ -47,16 +45,6 @@ def generate_etag(request, width, height):
     return hashlib.sha1(content.encode('utf-8')).hexdigest()
 
 
-
-
-def index(request):
-    example = reverse('placeholder',kwargs={'width':50,'height':50})
-    context = {
-        'example':request.build_absolute_uri(example)
-    }
-    return render(request,'home.html',context)
-
-
 @etag(generate_etag)
 def placeholder(request,height,width):
     form = ImageFrom({'height': height, 'width': width})
@@ -65,7 +53,14 @@ def placeholder(request,height,width):
         
         return HttpResponse(image,content_type='image/png')
     else:
-        return HttpResponse('Invaild Image Request')
+        return HttpResponseBadRequest('Invaild Image Request')
+
+def index(request):
+    example = reverse('placeholder', kwargs={'width': 50, 'height': 50})
+    context = {
+        'example': request.build_absolute_uri(example)
+    }
+    return render(request, 'home.html', context)
 
 urlpatterns =(
     url(r'^image/(?P<width>[0-9]+)x(?P<height>[0-9]+)/$',placeholder,name='placeholder'),
