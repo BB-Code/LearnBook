@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Class绑定数组语法</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div :class="[activeClass,errorClass]"></div>
+    <div :class="[isActive ? activeClass : '',errorClass]"></div>
+    <div :class="[{'active': isActive},errorClass]"></div>
+  </div>
+  <script type="text/javascript">
+    new Vue({
+      el: '#app',
+      data: {
+        isActive: true,
+        activeClass:'active',
+        errorClass: 'error'
+      },
+      methods: {},
+      computed:{}
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>绑定值</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <fieldset>
+      <legend>单选</legend>
+      <!-- :disabled="disabled" -->
+      <input type="radio" v-model="sex" :value="value">男
+      <p>{{sex}}</p>
+      <p>{{value}}</p>
+      当选中时: app.sex === app.value
+    </fieldset>
+
+   <fieldset>
+      <legend>复选</legend>
+      　　<input type="checkbox" v-model="toggle"　:true-value="truevalue"  :false-value="falsevalue">
+          <label>复选框</label>
+          <p>{{toggle}}</p>
+          <p>{{truevalue}}</p>
+          <p>{{falsevalue}}</p>
+          当选中时: app.toggle === app.truevalue
+          未勾选时: app.toggle === app.falsevalue
+    </fieldset>
+
+    <fieldset>
+      <legend>选择列表</legend>
+      　　<select v-model="selected">
+      　　  <option :value="{num:123}">123</option>
+      　　</select>
+          选择的值:{{selected.num}}
+          当选中时: app.selected 是object,app.selected.num ===123
+    </fieldset>
+  </div>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        sex: false,
+        value: '男',
+        toggle: false,
+        truevalue: 'value is true',
+        falsevalue: 'value is false',
+        selected: ''
+      },
+      methods: {}
+    })
+  </script>
+</body>
+</html>

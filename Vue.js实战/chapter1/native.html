@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Native use DOM</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/javascript">
+    var div = document.getElementById('app');
+    var btn = document.createElement('button');
+    btn.innerHTML = '点击';
+    btn.addEventListener('click',function () {
+      console.log('Clicked');
+    });
+    div.append(btn);
+
+  </script>
+</body>
+</html>

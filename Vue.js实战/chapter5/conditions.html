@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>条件渲染</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <fieldset>
+      <legend>元素复用</legend>
+      <template v-if="type=== 'name'">
+        <label for="username">用户名:</label>
+        <input type="text" name="username" placeholder="请输入用户名">
+      </template>
+      <template v-else>
+        <label for="email">邮箱:</label>
+        <input type="email" name="email" placeholder="请输入邮箱">
+      </template>
+      <button type="button" @click="handleChild">切换输入类型</button>
+    </fieldset>
+    <fieldset>
+      <legend>元素不复用(属性加了Key)</legend>
+      <template v-if="type=== 'name'">
+        <label for="username">用户名:</label>
+        <input type="text"　key="username" name="username" placeholder="请输入用户名">
+      </template>
+      <template v-else>
+        <label for="email">邮箱:</label>
+        <input type="email" key="email" name="email" placeholder="请输入邮箱">
+      </template>
+      <button type="button" @click="handleChild">切换输入类型</button>
+    </fieldset>
+  </div>
+  <script type="text/javascript">
+    new Vue({
+      el: '#app',
+      data: {
+        type:'name'
+      },
+      methods: {
+        handleChild:function () {
+          this.type = this.type === 'name' ? 'email' :'name';
+        }
+      }
+    })
+  </script>
+</body>
+</html>

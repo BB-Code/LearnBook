@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>过滤器</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{date | formatDate }}
+  </div>
+  <script type="text/javascript">
+  var disposeDate = function (value) {
+    return value < 10 ? '0'+ value : value;
+  };
+   var app = new Vue({
+      el: '#app',
+      data: {
+        date: new Date()
+      },
+      methods: {},
+      filters: {
+        formatDate:function (value) {
+           var date = new Date(value);
+           var year = date.getFullYear();
+           var month = disposeDate(date.getMonth()+1);
+           var day = disposeDate(date.getDate());
+           var hours = disposeDate(date.getHours());
+           var minutes = disposeDate(date.getMinutes());
+           var seconds = disposeDate(date.getSeconds());
+
+           return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+         },
+      },
+      mounted: function () {
+        var _this = this;
+        this.timer = setInterval(function () {
+          _this.date = new Date();
+        },1000)
+      },
+      beforeDestory:function () {
+        if(this.timer){
+          clearInterval(this.timer);
+        }
+      }
+    })
+  </script>
+</body>
+</html>

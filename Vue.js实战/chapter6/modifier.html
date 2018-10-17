@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>修饰符</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model.lazy ="msg">
+    <p>{{msg}}</p>
+    <input type="number" v-model.number ='mynumber'>
+    <p>{{ typeof mynumber }}</p>
+    <input type="text" v-model.trim="sentence">
+    <p>{{sentence}}</p>
+  </div>
+  <script type="text/javascript">
+    new Vue({
+      el: '#app',
+      data: {
+        msg: '',
+        mynumber: 123,
+         sentence: ' i love vue         '
+      },
+      methods: {}
+    })
+  </script>
+</body>
+</html>

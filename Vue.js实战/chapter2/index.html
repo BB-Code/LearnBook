@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>数据绑定</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="name" placeholder="你的名字">
+    <h1>你好,{{name}}</h1>
+    <p>{{date}}</p>
+    <p v-html="link"></p>
+  　<p v-pre>{{date}}</p>
+    <p>{{number / 10}}</p>
+    <p>{{isShow ? '显示':'不显示'}}</p>
+    <p>{{text.split(' ').reverse().join(' ')}}</p>
+  </div>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name: '',
+        date: new Date().toLocaleString(),
+        link:'<a href="#">这是链接</a>',
+        isShow:true,
+        number:888,
+        text:'vue.js use i'
+      },
+      methods: {},
+      created: function(){
+        console.log('created');
+      },
+      mounted:function(){
+        var _this = this;
+        console.log('mounted');
+        console.log(this.date);
+        this.timer = setInterval(function () {
+           _this.date = new Date().toLocaleString();
+        },1000);
+      },
+      beforeDestory:function(){
+        console.log('beforeDestory');
+        if(this.timer){
+          clearInterval(this.timer);
+        }
+      }
+    });
+    console.log(app);
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>表单</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <fieldset>
+      <legend>单选</legend>
+      <!-- :disabled="disabled" -->
+      <input type="radio" v-model="test" name="sex"  value="man">男
+      <input type="radio" v-model="test" name="sex" value="weman">女
+      你选择的一项是:{{test}}
+    </fieldset>
+
+    <fieldset>
+      <legend>复选</legend>
+      　　<input type="checkbox" v-model="lang"　value="html">
+          <label for="html">HTML</label>
+          <input type="checkbox" v-model="lang"　value="javascript">
+          <label for="javascript">javascript</label>
+          选择的状态:{{lang}}
+    </fieldset>
+
+    <fieldset>
+      <legend>选择列表</legend>
+      　　<select v-model="selected">
+      　　  <option value="js">javascript</option>
+            <option value="css">Css</option>
+            <option value="html">HTML</option>
+      　　</select>
+          选择的状态:{{selected}}
+          <hr>
+          <p>复选列表</p>
+          <select v-model="selectList" multiple>
+          　　  <option>javascript</option>
+                <option>Css</option>
+                <option>HTML</option>
+          　　</select>
+              选择的状态:{{selectList}}
+    </fieldset>
+  </div>
+  <script type="text/javascript">
+    new Vue({
+      el: '#app',
+      data: {
+        //disabled:true,
+        checked:true,
+        test: '',
+        lang: [],
+        selected: '',
+        selectList: []
+      },
+      methods: {}
+    })
+  </script>
+</body>
+</html>

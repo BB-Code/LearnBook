@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>简单购物车</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+</head>
+<style>
+  table{ border-collapse: collapse;}
+  th{background: #ccc;color: #fff;}
+  td{padding: 10px;}
+</style>
+<body>
+  <div id="app" v-cloak>
+    <template v-if="carLists.length">
+        <table border="1">
+          <tr>
+            <th></th>
+            <th>商品</th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>操作</th>
+          </tr>
+          <tr v-for="(shop,index) of carLists">
+            <td>{{index}}</td>
+            <td>{{shop.name}}</td>
+            <td>{{shop.price}}</td>
+            <td>
+              <button type="button" @click="Sub(index)" :disabled="shop.count===1"> - </button>
+              {{shop.count}}
+              <button type="button" @click="Add(index)"> + </button>
+            </td>
+            <td>
+              <button type="button" @click="Del(index)">移除</button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" style="text-align:center;">总价:￥ {{totalPrice}}</td>
+          </tr>
+        </table>
+    </template>
+    <div v-else>购物车为空</div>
+  </div>
+  <script type="text/javascript">
+    new Vue({
+      el: '#app',
+      data: {
+        carLists:[
+          {
+            id:1,
+            name: 'iphone 8',
+            price: 9999,
+            count:1
+          },
+          {
+            id:1,
+            name: 'oppo Find',
+            price: 10000,
+            count:1
+          },
+          {
+            id:1,
+            name: '魅蓝',
+            price: 5000,
+            count:1
+          },
+        ]
+      },
+      methods: {
+        Sub:function (index) {
+           if(this.carLists[index]===1)return;
+           this.carLists[index].count --;
+        },
+        Add:function (index) {
+          console.log('add')
+          this.carLists[index].count ++;
+        },
+        Del:function (index) {
+          this.carLists.splice(index,1);
+        }
+      },
+      computed:{
+        totalPrice:function () {
+          var  total = 0;
+          this.carLists.forEach((item)=>{
+            total += item.price * item.count
+          });
+          return total.toString().replace(/\B(?=(\d{3})+$)/g,',');
+        }
+      }
+    })
+  </script>
+</body>
+</html>

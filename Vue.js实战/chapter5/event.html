@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>事件</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <button type="button" @click="handleChick('禁止打开',$event)">点击跳转</button>
+    <button type="button" @keyup.enter="chickEnter">按Enter键</button>
+  </div>
+  <script type="text/javascript">
+    new Vue({
+      el: '#app',
+      data: {},
+      methods: {
+        handleChick:function (message,event) {
+            event.preventDefault();
+            window.alert(message);
+        },
+        chickEnter:function () {
+          alert('按Enter键了');
+        }
+      }
+    })
+  </script>
+</body>
+</html>

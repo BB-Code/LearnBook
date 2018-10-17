@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Class绑定结合computed</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div :class="myClass"></div>
+    <button type="button" :class="btnClass">按钮</button>
+  </div>
+  <script type="text/javascript">
+    new Vue({
+      el: '#app',
+      data: {
+        isActive:true,
+        error: null,
+        size: 'large',
+        disabled: false
+      },
+      methods: {},
+      computed:{
+        myClass:function () {
+          return {
+            active: this.isActive && !this.error,
+            'fail': this.error && this.error.type === 'fail'
+          }
+        },
+        btnClass:function () {
+          return [
+            'btn',
+            {
+                ['btn-' + this.size]: this.size != '',
+                ['btn-disabled']: this.disabled
+            }
+          ]
+        }
+      }
+    })
+  </script>
+</body>
+</html>

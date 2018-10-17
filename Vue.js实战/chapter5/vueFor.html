@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-for的相关应用</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+</head>
+<style>
+  span{
+    color: red;
+  }
+</style>
+<body>
+  <div id="app">
+    <fieldset>
+      <legend>数组的使用(过滤的使用)</legend>
+      <template v-for="book in bookList" >
+        <li>书名: {{book.name}}　－　作者: {{book.author}}</li>
+      </template>
+    </fieldset>
+
+    <fieldset>
+      <legend>对象的使用</legend>
+      <template v-for="user in userinfo" >
+        　　{{user}}
+      </template>
+    </fieldset>
+
+    <fieldset>
+      <legend>遍历可选参数的使用</legend>
+      <template v-for="(value,key,index) in userinfo" >
+        　　index: <span>{{index}}</span> | value: <span>{{value}}</span> |  key:<span>{{key}}</span>
+      </template>
+    </fieldset>
+
+  </div>
+  <script type="text/javascript">
+    var app =new Vue({
+      el: '#app',
+      data: {
+        bookList:[
+          {name:'《Vue.js 实战》',author:'张三'},
+          {name:'《javascript实战》',author:'李四'},
+          {name:'《React实战》',author:'王五'},
+          {name:'《javascript 金典大全》',author:'赵六'}
+        ],
+        userinfo:{
+          name: 'bobo',
+          age: 23,
+          gender: '男'
+        }
+      },
+      methods: {},
+      computed:{
+        sortBooks:function () {
+          return this.bookList.sort((a,b)=>{
+            return a.name.length < b.name.length;
+          })
+        }
+      }
+    });
+    // app.bookList = app.bookList.filter((item)=>{
+    //   return item.name.match(/javascript/);
+    // });
+    Vue.set(app.bookList,2,{
+      name: '《CSS解密》',
+      author: 'xx'
+    });
+  </script>
+</body>
+</html>
